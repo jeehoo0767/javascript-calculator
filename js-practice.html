@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        caption h1{
+            margin: 0;
+        }
+
+        tr th input {
+            width: 243px;
+            height: 40px;
+            text-align: right;
+        }
+
+        input:not(last-child) {
+            background-color: #adadad;
+        }
+
+        tr td input {
+            width: 60px;
+            height: 50px;
+            border: none;
+        }
+
+        input[type=text] {
+            background-color: white;
+            border: 1px solid #adadad;
+        }
+
+        td>input {
+            background: #adadad;
+            color: white;
+        }
+
+        td:last-child>input {
+            background: orange;
+        }
+
+        tr td input:hover {
+            cursor: pointer;
+        }
+
+        tr td input:focus {
+            outline: none;
+        }
+
+        tr td input:active {
+            opacity: 0;
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        tr:last-child td>input {
+            width: 249px;
+        }
+        #memory{
+            display:none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <table border="1">
+        <caption><h1>계산기</h1></caption>
+        <tr>
+            <th colspan=4><input type="text" value="0" id="resultBox"></th>
+        </tr>
+        <tr>
+            <th colspan=4><input type="text" placeholder="연산자" value="" id="cal"></th>
+
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="insert(7)"></td>
+            <td><input type="button" value="8" onclick="insert(8)"></td>
+            <td><input type="button" value="9" onclick="insert(9)"></td>
+            <td><input type="button" value="+" onclick="insert_cal('+')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="insert(4)"></td>
+            <td><input type="button" value="5" onclick="insert(5)"></td>
+            <td><input type="button" value="6" onclick="insert(6)"></td>
+            <td><input type="button" value="-" onclick="insert_cal('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="insert(1)"></td>
+            <td><input type="button" value="2" onclick="insert(2)"></td>
+            <td><input type="button" value="3" onclick="insert(3)"></td>
+            <td><input type="button" value="*" onclick="insert_cal('*')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="C" onclick="reset()"></td>
+            <td><input type="button" value="0" onclick="insert(7)"></td>
+            <td><input type="button" value="." onclick="insert('.')"></td>
+            <td><input type="button" value="/" onclick="insert_cal('/')"></td>
+        </tr>
+
+        <tr>
+            <td colspan="4"><input type="button" value="=" onclick="equal()"></td>
+        </tr>
+    </table>
+    <input type="text" placeholder="저장소" value="" id="memory">
+    <script>
+        var resultbox = document.getElementById("resultBox");
+        var Cal = document.getElementById("cal");
+        var memorybox = document.getElementById("memory");
+        function reset(){
+            resultbox.value="";
+            Cal.value="";
+            memory.value="";
+        }
+        function insert(value) {
+            if (resultbox.value == 0) {
+                resultbox.value = "";
+            }
+            resultbox.value += value;
+        }
+
+        function insert_cal(value) {
+            Cal.value = value;
+            memorybox.value = resultbox.value;
+            resultbox.value=0;
+        }
+
+        function equal(){
+            resultbox.value=eval(memorybox.value+Cal.value+resultbox.value);
+        }
+
+    </script>
+</body>
+
+</html>
