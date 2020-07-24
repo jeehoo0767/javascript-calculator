@@ -96,7 +96,7 @@
         </tr>
         <tr>
             <td><input type="button" value="C" onclick="reset()"></td>
-            <td><input type="button" value="0" onclick="insert(7)"></td>
+            <td><input type="button" value="0" onclick="insert(0)"></td>
             <td><input type="button" value="." onclick="insert('.')"></td>
             <td><input type="button" value="/" onclick="insert_cal('/')"></td>
         </tr>
@@ -109,13 +109,13 @@
     <script>
         var resultbox = document.getElementById("resultBox");
         var Cal = document.getElementById("cal");
-        var memorybox = document.getElementById("memory");
+        var cal_count = 0;
         function reset(){
             resultbox.value="";
             Cal.value="";
-            memory.value="";
         }
         function insert(value) {
+            cal_count=0;
             if (resultbox.value == 0) {
                 resultbox.value = "";
             }
@@ -123,15 +123,16 @@
         }
 
         function insert_cal(value) {
+            if(cal_count==0){
             Cal.value = value;
-            memorybox.value = resultbox.value;
-            resultbox.value=0;
+            resultbox.value+=value;
+            cal_count++;
+            }
         }
 
         function equal(){
-            resultbox.value=eval(memorybox.value+Cal.value+resultbox.value);
+            resultbox.value=eval(resultbox.value);
         }
-
     </script>
 </body>
 
